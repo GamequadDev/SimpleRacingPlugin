@@ -11,24 +11,6 @@ class UInputMappingContext;
 class UInputAction;
 struct FInputActionValue;
 
-
-/*
-UINTERFACE(MinimalAPI, Blueprintable)
-class UVehicleControllerInterface : public UInterface
-{
-	GENERATED_BODY()
-};
-
-class IVehicleControllerInterface
-{
-	GENERATED_BODY()
-
-	public:
-
-	virtual void MoveForward(float Value);
-	virtual void MoveRight(float Value);
-};*/
-
 UCLASS()
 class SIMPLERACING_API ASRVehicleController : public APlayerController
 {
@@ -45,6 +27,12 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
 	UInputAction* MoveYAction;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
+	UInputAction* ChangeCameraAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
+	UInputAction* CameraXAction;
+	
 protected:
 
 	virtual void SetupInputComponent() override;
@@ -54,8 +42,10 @@ protected:
 	void HandleMoveXAction(const FInputActionValue& Value);
 	void HandleMoveYAction(const FInputActionValue& Value);
 
+	void HandleCameraXAction(const FInputActionValue& Value);
 	
+	void HandleChangeCameraAction();
+
+	UPROPERTY()
 	ASRVehiclePawn* PawnVehicle = nullptr;
-	
-	
 };

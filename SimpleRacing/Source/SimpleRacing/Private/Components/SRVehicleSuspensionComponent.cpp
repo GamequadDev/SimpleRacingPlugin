@@ -1,43 +1,30 @@
-// Copyright 2025 Teyon. All Rights Reserved.
-
+// Copyright 2025 Mateusz Wozniak. All Rights Reserved.
 
 #include "Components/SRVehicleSuspensionComponent.h"
 
-// Sets default values for this component's properties
+static TAutoConsoleVariable<int32> CVarSuspensionDebug(
+	TEXT("vehicle.Suspension"),
+	0,
+	TEXT("Debug visualisation for suspension.\n")
+	TEXT("<=0: off \n")
+	TEXT(" 1: Suspension Visualition Raycast\n")
+	TEXT(" 2: Suspension Visualition Value\n"),
+	ECVF_Scalability | ECVF_RenderThreadSafe);
+
 USRVehicleSuspensionComponent::USRVehicleSuspensionComponent()
 {
-	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
-	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
-	//RootComponent->AttachToComponent(RootComponent);
-	
-	// ...
 }
 
-
-// Called when the game starts
-void USRVehicleSuspensionComponent::BeginPlay()
-{
-	Super::BeginPlay();
-
-	// ...
-	
-}
-
-
-// Called every frame
 void USRVehicleSuspensionComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
-
+	
 	const FVector ComponentWorldLocation = GetComponentLocation();
 	
 	if(VehicleMainBody)
 	{
 		FHitResult Hit;
-
-		
 		TEnumAsByte<ECollisionChannel> TraceChannelProperty = ECC_WorldStatic;
 		
 		const FVector TracerStart = ComponentWorldLocation;
@@ -47,9 +34,7 @@ void USRVehicleSuspensionComponent::TickComponent(float DeltaTime, ELevelTick Ti
 		QueryParams.AddIgnoredActor(VehicleMainBody->GetOwner());
 		
 		GetWorld()->LineTraceSingleByChannel(Hit, TracerStart, TracerEnd, TraceChannelProperty, QueryParams);
-
-	
-
+		
 		if (Hit.bBlockingHit)
 		{
 			const FVector SuspensionVelocity = VehicleMainBody->GetPhysicsLinearVelocityAtPoint(ComponentWorldLocation);
@@ -66,7 +51,7 @@ void USRVehicleSuspensionComponent::TickComponent(float DeltaTime, ELevelTick Ti
 
 			LastHitDistance = Hit.Distance;
 
-			if(bDebugMode)
+			if(CVarSuspensionDebug.GetValueOnGameThread() == 2)
 			{
 				FString FloatAsString = FString::SanitizeFloat(CompressionRatio);
 				DrawDebugString(GetWorld(), TracerEnd, *FloatAsString, GetOwner(), FColor::Black, 0.1f,true);
@@ -77,11 +62,10 @@ void USRVehicleSuspensionComponent::TickComponent(float DeltaTime, ELevelTick Ti
 			LastHitDistance = LenghtSuspension + 40;
 		}
 
-		if(bDebugMode)
+		if(CVarSuspensionDebug.GetValueOnGameThread() == 1)
 		{
 			DrawDebugLine(GetWorld(), TracerStart, TracerEnd, Hit.bBlockingHit ? FColor::Blue : FColor::Red, false, 0.1f, 0, 4.0f);
 		}
-		
 	}
 }
 
@@ -89,4 +73,3 @@ void USRVehicleSuspensionComponent::SetVehicleMainBody(UStaticMeshComponent* Veh
 {
 	VehicleMainBody = Vehicle;
 }
-

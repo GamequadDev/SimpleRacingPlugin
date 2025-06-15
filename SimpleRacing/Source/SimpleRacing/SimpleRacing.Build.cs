@@ -10,14 +10,12 @@ public class SimpleRacing : ModuleRules
 		
 		PublicIncludePaths.AddRange(
 			new string[] {
-				// ... add public include paths required here ...
 			}
 			);
 				
 		
 		PrivateIncludePaths.AddRange(
 			new string[] {
-				// ... add other private include paths required here ...
 			}
 			);
 			
@@ -29,8 +27,9 @@ public class SimpleRacing : ModuleRules
 				"CoreUObject",
 				"Engine",
 				"InputCore",
-				"EnhancedInput"
-				// ... add other public dependencies that you statically link with here ...
+				"EnhancedInput",
+				"AIModule",
+				"UMG"
 			}
 			);
 			
@@ -42,8 +41,7 @@ public class SimpleRacing : ModuleRules
 				"Engine",
 				"Slate",
 				"SlateCore",
-				
-				// ... add private dependencies that you statically link with here ...	
+                "UMG"
 			}
 			);
 		
@@ -51,7 +49,6 @@ public class SimpleRacing : ModuleRules
 		DynamicallyLoadedModuleNames.AddRange(
 			new string[]
 			{
-				// ... add any modules that your module loads dynamically here ...
 			}
 			);
 	}
