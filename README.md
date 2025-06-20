@@ -18,7 +18,7 @@ This plugin is an extension for Unreal Engine 5, written in C++. It is designed 
 - Support for Unreal's Enhanced Input system, including gamepad support (tested with Xbox 360 controller)
 - Camera switching system
 - Simple AI bot
-- 
+
 ---
 
 ## Requirements
