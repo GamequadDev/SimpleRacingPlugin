@@ -3,11 +3,14 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Engine.h"
 #include "Camera/CameraComponent.h"
+#include "Components/SceneComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/Pawn.h"
 #include "Track/SRTrackPath.h"
 #include "Game/SRGameInstance.h"
+#include "TimerManager.h"
 #include "UI/UMG/SRVehiclePlayerHUD.h"
 #include "SRVehiclePawn.generated.h"
 

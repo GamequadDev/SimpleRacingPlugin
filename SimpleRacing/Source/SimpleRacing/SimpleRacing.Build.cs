@@ -7,7 +7,7 @@ public class SimpleRacing : ModuleRules
 	public SimpleRacing(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
-		
+
 		PublicIncludePaths.AddRange(
 			new string[] {
 			}
@@ -40,9 +40,8 @@ public class SimpleRacing : ModuleRules
 				"CoreUObject",
 				"Engine",
 				"Slate",
-				"SlateCore",
-                "UMG"
-			}
+				"SlateCore"
+              		}
 			);
 		
 		

@@ -92,7 +92,10 @@ void ASRCarCustomizedPawn::SetDamage(float Damage)
 {
 	Super::SetDamage(Damage);
 
-	DynamicCarBodyMaterial->SetScalarParameterValue("DamageValue",CurrentDamage);
+    if(DynamicCarBodyMaterial)
+    {
+        DynamicCarBodyMaterial->SetScalarParameterValue("DamageValue",CurrentDamage);
+    }
 }
 
 void ASRCarCustomizedPawn::SetDynamicMaterialCarParts()
@@ -114,7 +117,7 @@ void ASRCarCustomizedPawn::SetDynamicMaterialCarParts()
         	SpoilerBackMeshComponent->SetMaterial(0, DynamicCarBodyMaterial);
 	}
 	
-	if(GameInstance)
+	if(GameInstance && DynamicCarBodyMaterial)
 	{
 		if(CarColorTexture.IsValidIndex(GameInstance->VehicleColor))
 		{

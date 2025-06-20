@@ -1,6 +1,11 @@
 // Copyright 2025 Mateusz Wozniak. All Rights Reserved.
 
 #include "Components/SRVehicleSuspensionComponent.h"
+#include "HAL/IConsoleManager.h"
+#include "Kismet/KismetSystemLibrary.h"
+#include "Engine/World.h"
+#include "Components/StaticMeshComponent.h"
+#include "DrawDebugHelpers.h"
 
 static TAutoConsoleVariable<int32> CVarSuspensionDebug(
 	TEXT("vehicle.Suspension"),

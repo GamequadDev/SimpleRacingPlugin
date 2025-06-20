@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "Vehicles/Pawns/SRCarPawn.h"
+#include "Materials/MaterialInstanceDynamic.h"
+#include "Components/SkeletalMeshComponent.h"
 #include "SRCarCustomizedPawn.generated.h"
 
 UCLASS()

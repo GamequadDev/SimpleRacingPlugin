@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Components/SplineComponent.h"
 #include "GameFramework/Actor.h"
+#include "Engine/World.h"
 #include "Track/SRTrackCheckpoint.h"
 #include "SRTrackPath.generated.h"
 
